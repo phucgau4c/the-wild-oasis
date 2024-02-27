@@ -1,7 +1,8 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import SideBar from './SideBar';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
@@ -24,6 +25,25 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
+  const titles = {
+    dashboard: 'Home',
+    bookings: 'Bookings',
+    cabins: 'Cabins',
+    users: 'Users',
+    checkin: 'Check in',
+    settings: 'Settings',
+    account: 'Account',
+    login: 'Login',
+  };
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location.pathname);
+    const locationTitle = location.pathname.split('/');
+    document.title =
+      `${titles[locationTitle[1]]} ${locationTitle[2] || ''}` || '404';
+  }, [location]);
+
   return (
     <StyledAppLayout>
       <Header />

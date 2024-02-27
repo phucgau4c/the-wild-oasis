@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import LoginForm from '../features/authentication/LoginForm';
 import Logo from '../ui/Logo';
 import Heading from '../ui/Heading';
+import { useEffect } from 'react';
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -14,6 +15,10 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
+
   return (
     <LoginLayout>
       <Logo />
